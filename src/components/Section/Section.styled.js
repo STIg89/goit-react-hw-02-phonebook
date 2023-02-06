@@ -5,6 +5,7 @@ export const SectionWrap = styled.section`
   background-color: lightslategray;
   box-shadow: 3px 5px 8px black;
   padding: 30px;
+  border-radius: 8px;
 `;
 
 export const Title = styled.h2`
