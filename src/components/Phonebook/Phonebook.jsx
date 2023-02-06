@@ -5,7 +5,10 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { Wrapper } from './Phonebook.styled';
-import { Notification } from 'components/Notification/Notification';
+import {
+  Notification,
+  noContactsNotify,
+} from 'components/Notification/Notification';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -44,6 +47,9 @@ export class Phonebook extends Component {
   filteredContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
+    if (contacts.length === 0) {
+      noContactsNotify();
+    }
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
