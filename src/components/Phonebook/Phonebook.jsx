@@ -8,6 +8,7 @@ import { Wrapper } from './Phonebook.styled';
 import {
   Notification,
   noContactsNotify,
+  noMatchesNotify,
 } from 'components/Notification/Notification';
 
 const initialContacts = [
@@ -49,10 +50,15 @@ export class Phonebook extends Component {
     const normalizedFilter = filter.toLowerCase();
     if (contacts.length === 0) {
       noContactsNotify();
+      return;
     }
-    return contacts.filter(contact =>
+    const filtered = contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
     );
+    if (filtered.length === 0) {
+      noMatchesNotify();
+    }
+    return filtered;
   };
 
   deleteContact = id => {
